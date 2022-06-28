@@ -15,7 +15,7 @@
   <button class="w3-button w3-black" onclick="loadPage('pages/usun.html');">Usuń</button>
 </div>
 
-<table id="wyswietl" class="w3-table-all"></table>
+<div id="wyswietl"></div>
 
 <script>
 function loadPage(brl) {
@@ -23,7 +23,6 @@ function loadPage(brl) {
 	$( "#wyswietl" ).load(url, function(){ 
 	});
 }
-
 function loadDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -37,28 +36,28 @@ function loadDoc() {
 function myFunction(xml) {
   var i;
   var xmlDoc = xml.responseXML;
-  var table="<tr><th>ŚT</th><th>Nazwa</th><th>Rodzaj</th><th>Numer seryjny</th><th>Ilość</th><th>Data zakupu</th><th>Wartość</th><th>Nr FV</th></tr>";
+  var table="<tr><th>ŚT</th><th>Nazwa</th><th>Nr seryjny</th><th>Osoba pożyczająca</th><th>Wydano</th><th>Do zwrotu</th><th>Notatki</th><th>Konserwacja</th></tr>";
   var x = xmlDoc.getElementsByTagName("ST");
   for (i = 0; i <x.length; i++) { 
     table += "<tr><td>" +
-    x[i].getElementsByTagName("NUMERST")[0].childNodes[0].nodeValue +
+    x[i].getElementsByTagName("STN")[0].childNodes[0].nodeValue +
     "</td><td>" +
-	x[i].getElementsByTagName("NAZWA")[0].childNodes[0].nodeValue +
+	x[i].getElementsByTagName("Nazwa")[0].childNodes[0].nodeValue +
     "</td><td>" +
-	x[i].getElementsByTagName("RODZAJ")[0].childNodes[0].nodeValue +
+	x[i].getElementsByTagName("Nr_seryjny")[0].childNodes[0].nodeValue +
     "</td><td>" +
-	x[i].getElementsByTagName("SN")[0].childNodes[0].nodeValue +
+	x[i].getElementsByTagName("Osoba_poz")[0].childNodes[0].nodeValue +
     "</td><td>" +
-	x[i].getElementsByTagName("ILOSC")[0].childNodes[0].nodeValue +
+	x[i].getElementsByTagName("Wydano")[0].childNodes[0].nodeValue +
     "</td><td>" +
-	x[i].getElementsByTagName("DZAKUPU")[0].childNodes[0].nodeValue +
+	x[i].getElementsByTagName("Do_zwrotu")[0].childNodes[0].nodeValue +
     "</td><td>" +
-	x[i].getElementsByTagName("WARTOSC")[0].childNodes[0].nodeValue +
+	x[i].getElementsByTagName("Notatki")[0].childNodes[0].nodeValue +
     "</td><td>" +
-    x[i].getElementsByTagName("FVAT")[0].childNodes[0].nodeValue +
+    x[i].getElementsByTagName("Konserwacja")[0].childNodes[0].nodeValue +
     "</td></tr>";
   }
-  document.getElementById("wyswietl").innerHTML = table;
+  document.getElementById("wyniki").innerHTML = table;
 }
 </script>
 

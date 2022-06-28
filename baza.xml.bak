@@ -1,22 +1,22 @@
 <MAGAZYNST>
 	<ST>
-		<NUMERST>2022060101</NUMERST>
-		<NAZWA>Kompter DELL</NAZWA>
-		<RODZAJ>Komputer</RODZAJ>
-		<SN>Q23KD02K</SN>
-		<ILOSC>1</ILOSC>
-		<DZAKUPU>05.06.2022</DZAKUPU>
-		<WARTOSC>1500</WARTOSC>
-		<FVAT>FV001/06/2020</FVAT>
+		<ST>2022060101</ST>
+		<Nazwa>Kompter DELL</Nazwa>
+		<Nr_seryjny>Q23KD02K</Nr_seryjny>
+		<Osoba_poz>Kowalski</Osoba_poz>
+		<Wydano>15:30 06.06.2022</Wydano>
+		<Do_zwrotu>15:30 07.06.2022</Do_zwrotu>
+		<Notatki>Sprzęt wydany</Notatki>
+		<Konserwacja>01.06.2022</Konserwacja>
 	</ST>
 	<ST>
-		<NUMERST>2022060102</NUMERST>
-		<NAZWA>Laptop DELL</NAZWA>
-		<RODZAJ>Komputer</RODZAJ>
-		<SN>O219DFJ2</SN>
-		<ILOSC>1</ILOSC>
-		<DZAKUPU>05.06.2022</DZAKUPU>
-		<WARTOSC>2500</WARTOSC>
-		<FVAT>FV001/06/2020</FVAT>
+		<STN>2022060102</STN>
+		<Nazwa>Laptop DELL</Nazwa>
+		<Nr_seryjny>Q23KD02K</Nr_seryjny>
+		<Osoba_poz>Kowalski</Osoba_poz>
+		<Wydano>15:30 06.06.2022</Wydano>
+		<Do_zwrotu>15:30 07.06.2022</Do_zwrotu>
+		<Notatki>Sprzęt wydany</Notatki>
+		<Konserwacja>01.06.2022</Konserwacja>
 	</ST>
-<MAGAZYNST>
+</MAGAZYNST>
