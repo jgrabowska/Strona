@@ -3,12 +3,12 @@
 $ST = $_POST['ST'];
 $Nazwa = $_POST['Nazwa'];
 $Nr_seryjny = $_POST['Nr_seryjny'];
-$connection = mysql_connect("localhost", "root", "toor"); // Establishing Connection with Server..
-$db = mysql_select_db("magazyn", $connection); // Selecting Database
+$connection = mysqli_connect("localhost", "root", ""); // Establishing Connection with Server..
+$db = mysqli_select_db($connection,'magazyn'); // Selecting Database
 
 $sql="SELECT * FROM stn WHERE st LIKE '%".$ST."%'";
 $result = mysqli_query($con,$sql);
-
+echo "JESTEM TU";
 echo "<table>
 <tr>
 <th>ST</th>
@@ -24,5 +24,5 @@ while($row = mysqli_fetch_array($result)) {
 }
 echo "</table>";
 
-mysql_close($connection); // Connection Closed
+mysqli_close($connection); // Connection Closed
 ?>

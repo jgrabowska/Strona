@@ -3,14 +3,14 @@
 </div>
 <form class="w3-margin-left w3-row-padding" id="form">
 	<p>
-	<label>ŚT</label>
-	<input onkeyup="showUser(this.value)" class="w3-input w3-border" id="ST" type="text" style="width:20%"></p>
+	<label>Wyszukiwarka</label>
+	<input onkeyup="showUser(this.value)" class="w3-input w3-border search" id="ST" type="text" style="width:20%"></p>
 	<p>
 	<label>Nazwa</label>
-	<input class="w3-input w3-border" id="Nazwa" type="text" style="width:20%"></p>
+	<input onkeyup="showUser(this.value)" class="w3-input w3-border search" id="Nazwa" type="text" style="width:20%"></p>
 	<p>
 	<label>Nr seryjny</label>
-	<input class="w3-input w3-border" id="Nr_seryjny" type="text" style="width:20%"></p>
+	<input class="w3-input w3-border search" id="Nr_seryjny" type="text" style="width:20%"></p>
 	<p>
 	<label>Osoba pożyczająca</label>
 	<input class="w3-input w3-border" name="Osoba_poz" type="text" style="width:20%"></p>
@@ -24,31 +24,14 @@
 	<label>Konserwacja</label>
 	<input class="w3-input w3-border" name="Konserwacja" type="text" style="width:20%"></p>
 	
-	<button class="w3-button w3-white w3-border" onclick="loadDoc()" type="submit">Szukaj</button>
-</div>
-<form>
+	<button class="w3-button w3-white w3-border" id="btnSubmit" type="submit">Szukaj</button>
+</form>
 
 <div id="wyniki"></div>
 
 <script>
-function myFunction() {
-var ST = document.getElementById("ST").value;
-var Nazwa = document.getElementById("Nazwa").value;
-var Nr_seryjny = document.getElementById("Nr_seryjny").value;
-// Returns successful data submission message when the entered information is stored in database.
-// AJAX code to submit form.
-$.ajax({
-type: "POST",
-url: "test.php",
-data: dataString,
-cache: false,
-success: function(html) {
-alert(html);
-}
-});
 
-return false;
-}
+
 function showUser(str) {
   if (str == "") {
     document.getElementById("wyniki").innerHTML = "";
