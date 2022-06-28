@@ -4,25 +4,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="w3.css">
 	<link rel="stylesheet" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<meta charset="utf-8">
 <body>
 
 <div class="w3-bar w3-black">
-  <button class="w3-button w3-black" onclick="loadPage('pages/page_1.html');">Wyszukaj</button>
-  <button class="w3-button w3-black" onclick="loadDoc()">Dodaj</button>
-  <button class="w3-button w3-black" onclick="loadDoc()">Edytuj</button>
-  <button class="w3-button w3-black" onclick="loadDoc()">Usuń</button>
+  <a href="#Wyszukaj" class="w3-bar-item w3-button w3-mobile">Wyszukaj</a>
+  <a href="#Dodaj" class="w3-bar-item w3-button w3-mobile">Dodaj</a>
+  <a href="#Edytuj" class="w3-bar-item w3-button w3-mobile">Edytuj</a>
+  <a href="#Usun" class="w3-bar-item w3-button w3-mobile">Usuń</a>
 </div>
 
 <table id="wyswietl" class="w3-table-all"></table>
 
 <script>
-function loadPage(brl) {
-	var url = eval("brl");
-	$( "#wyswietl" ).load(url, function(){ 
-	});
-}
+function loadPage(url)  //the function that loads pages via AJAX
+{
+    url=url.replace('#page','');    //strip the #page part of the hash and leave only the page number
+
+    $.ajax({    //create an ajax request to load_page.php
+        type: "POST",
+        url: "load_page.php",
+        data: 'page='+url,  //with the page number as a parameter
+        dataType: "html",   //expect html to be returned
+        success: function(msg){
+
+            if(parseInt(msg)!=0)    //if no errors
+            {
+                $('#pageContent').html(msg);    //load the returned html into pageContet
+                $('#loading').css('visibility','hidden');   //and hide the rotating gif
+            }
+        }
+
+    });
+
 
 function loadDoc() {
   var xhttp = new XMLHttpRequest();
