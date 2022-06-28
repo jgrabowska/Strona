@@ -1,12 +1,11 @@
 <?php
-$q = intval($_GET['q']);
+$q = ($_GET['q']);
 $con = mysqli_connect('localhost','root','','magazyn');
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 mysqli_select_db($con,"magazyn");
-$sql="SELECT * FROM stn WHERE st LIKE '".$q."' OR nazwa LIKE '%".$q."%' OR nr_seryjny LIKE '%".$q."%' OR osoba_poz LIKE '%".$q."%' OR wydano LIKE '%".$q."%' OR do_zwrotu LIKE '%".$q."%' OR konserwacja LIKE '%".$q."%'";
-
+$sql="SELECT * FROM stn WHERE st = '".$q."'";
 $result = mysqli_query($con,$sql);
 
 echo "<table class='w3-table-all'>
@@ -32,6 +31,7 @@ while($row = mysqli_fetch_array($result)) {
   echo "<td>" . $row['Konserwacja'] . "</td>";
   echo "</tr>";
 }
+
 echo "</table>";
 mysqli_close($con);
 ?>

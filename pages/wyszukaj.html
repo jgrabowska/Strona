@@ -4,15 +4,13 @@
 <form class="w3-margin-left w3-row-padding" id="form">
 	<p>
 	<label>Wyszukiwarka</label>
-	<input onkeyup="showUser(this.value)" class="w3-input w3-border search" id="ST" type="text" style="width:20%"></p>
+	<input onkeyup="showST(this.value)" class="w3-input w3-border search" id="ST" type="text" style="width:20%"></p>
 </form>
 
 <div id="wyniki"></div>
 
 <script>
-
-
-function showUser(str) {
+function showST(str) {
   if (str == "") {
     document.getElementById("wyniki").innerHTML = "";
     return;

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-
-</style>
-</head>
-<body>
-
 <?php
-$q = ($_GET['q']);
+$q = intval($_GET['q']);
 $con = mysqli_connect('localhost','root','','magazyn');
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
