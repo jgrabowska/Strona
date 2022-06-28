@@ -1,17 +1,48 @@
 <!DOCTYPE html>
 <html>
-<title>Środki trwałe</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="w3.css">
-<link rel="stylesheet" href="style.css">
+	<title>Ewidencja środków trwałych</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="w3.css">
+	<link rel="stylesheet" href="style.css">
+	<meta charset="utf-8">
 <body>
 
 <div class="w3-bar w3-black">
-  <a href="#" class="w3-bar-item w3-button">Wyszukaj</a>
-  <a href="#" class="w3-bar-item w3-button">Dodaj</a>
-  <a href="#" class="w3-bar-item w3-button">Edytuj</a>
-  <a href="#" class="w3-bar-item w3-button">Usuń</a>
+  <button class="w3-button w3-black" onclick="loadDoc()">Wyszukaj</button>
+  <button class="w3-button w3-black" onclick="loadDoc()">Dodaj</button>
+  <button class="w3-button w3-black" onclick="loadDoc()">Edytuj</button>
+  <button class="w3-button w3-black" onclick="loadDoc()">Usuń</button>
 </div>
+
+<table id="demo"></table>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+  xhttp.open("GET", "baza.xml", true);
+  xhttp.send();
+}
+function myFunction(xml) {
+  var i;
+  var xmlDoc = xml.responseXML;
+  var table="<tr><th>ŚT</th><th>Nazwa</th></tr>";
+  var x = xmlDoc.getElementsByTagName("ST");
+  for (i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("NUMERST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("NAZWA")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+</script>
+
 
 </body>
 </html>
