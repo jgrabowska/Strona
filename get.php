@@ -1,8 +1,7 @@
 <?php
-	$request = $_REQUEST;
+	$request = $_REQUEST; 
 	$id = $request['idst'];
-
-	$servername = "localhost"; 
+	$servername = "localhost";
 	$username = "root";
 	$password = "";
 	$dbname = "magazyn";
@@ -14,13 +13,15 @@
 	  exit();
 	}
 
-	$sql = "DELETE FROM stn WHERE id='".$id."'";
+	$sql = "SELECT * FROM stn WHERE id='".$id."'";
 
-	if ($mysqli->query($sql)) {
-	  echo "Usunięto rekord";
-	} else {
-	  echo "Bląd!: " . $sql . "<br>" . $mysqli->error;
-	}
+	$results = $mysqli->query($sql);
+
+	$row = $results->fetch_assoc();
+
+	$results->free_result();
 
 	$mysqli->close();
+
+	echo json_encode($row);
 ?>

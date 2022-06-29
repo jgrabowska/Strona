@@ -1,42 +1,29 @@
 <?php
-$q = ($_GET['q']);
-$con = mysqli_connect('localhost','root','','magazyn');
-if (!$con) {
-  die('Could not connect: ' . mysqli_error($con));
-}
-mysqli_select_db($con,"magazyn");
-$sql="SELECT * FROM stn WHERE st = '".$q."'";
-$result = mysqli_query($con,$sql);
+	$request = $_REQUEST;
+	$id = $request['idst'];
 
-echo "<table class='w3-table-all'>
-<tr>
-<th>ST</th>
-<th>Nazwa</th>
-<th>Nr seryjny</th>
-<th>Osoba pożyczająca</th>
-<th>Wydano</th>
-<th>Do zwrotu</th>
-<th>Notatki</th>
-<th>Konserwacja</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-  echo "<tr>";
-  echo "<td>" . $row['ST'] . "</td>";
-  echo "<td>" . $row['Nazwa'] . "</td>";
-  echo "<td>" . $row['Nr_seryjny'] . "</td>";
-  echo "<td>" . $row['Osoba_poz'] . "</td>";
-  echo "<td>" . $row['Wydano'] . "</td>";
-  echo "<td>" . $row['Do_zwrotu'] . "</td>";
-  echo "<td>" . $row['Notatki'] . "</td>";
-  echo "<td>" . $row['Konserwacja'] . "</td>";
-  echo "</tr>";
-}
+	$servername = "localhost"; 
+	$username = "root";
+	$password = "";
+	$dbname = "magazyn";
 
-$sql="DELETE FROM stn WHERE st='".$q."'";
-$result = mysqli_query($con,$sql);
+	$mysqli = new mysqli($servername, $username, $password, $dbname);
 
-echo "</table>";
-mysqli_close($con);
+	if ($mysqli->connect_errno) {
+	  echo "Błąd: " . $mysqli->connect_error;
+	  exit();
+	}
+
+	// Set the DELETE SQL data
+	$sql = "DELETE FROM stn WHERE id='".$id."'";
+
+	// Process the query so that we will save the date of birth
+	if ($mysqli->query($sql)) {
+	  echo "Usunięto rekord";
+	} else {
+	  echo "Bląd!: " . $sql . "<br>" . $mysqli->error;
+	}
+
+	// Close the connection after using it
+	$mysqli->close();
 ?>
-</body>
-</html>
