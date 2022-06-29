@@ -5,62 +5,65 @@
 	<link rel="stylesheet" href="w3.css">
 	<link rel="stylesheet" href="style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="script.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+	  	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	
+  	<!-- Page CSS -->
+  	<link rel="stylesheet" href="css/styles.css">
 	<meta charset="utf-8">
 <body>
-
 <div class="w3-bar w3-black">
-  <button class="w3-button w3-black" onclick="loadPage('pages/wyszukaj.html');">Wyszukaj</button>
-  <button class="w3-button w3-black" onclick="loadPage('pages/dodaj.html');">Dodaj</button>
-  <button class="w3-button w3-black" onclick="loadPage('pages/edytuj.html');">Edytuj</button>
-  <button class="w3-button w3-black" onclick="loadPage('pages/usun.html');">Usuń</button>
+  <button class="w3-button w3-black" onclick="loadPage('index.html')">H</button>
+  <button class="w3-button w3-black" onclick="loadPage('pages/wyszukaj.html')">Wyszukaj</button>
+  <button class="w3-button w3-black" onclick="loadPage('pages/dodaj.html')">Dodaj</button>
 </div>
+<div class="w3-margin-left w3-row-padding">
+</div>
+<div id="wyniki"></div>
+<table class="w3-table-all" id="wyniki"></table>
 
-<div id="wyswietl"></div>
+	<!-- The Modal -->
+	<div class="modal" id="edit-employee-modal">
+	  	<div class="modal-dialog">
+		    <div class="modal-content">
 
-<script>
-function loadPage(brl) {
-	var url = eval("brl");
-	$( "#wyswietl" ).load(url, function(){ 
-	});
-}
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      myFunction(this);
-    }
-  };
-  xhttp.open("GET", "baza.xml", true);
-  xhttp.send();
-}
-function myFunction(xml) {
-  var i;
-  var xmlDoc = xml.responseXML;
-  var table="<tr><th>ŚT</th><th>Nazwa</th><th>Nr seryjny</th><th>Osoba pożyczająca</th><th>Wydano</th><th>Do zwrotu</th><th>Notatki</th><th>Konserwacja</th></tr>";
-  var x = xmlDoc.getElementsByTagName("ST");
-  for (i = 0; i <x.length; i++) { 
-    table += "<tr><td>" +
-    x[i].getElementsByTagName("STN")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-	x[i].getElementsByTagName("Nazwa")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-	x[i].getElementsByTagName("Nr_seryjny")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-	x[i].getElementsByTagName("Osoba_poz")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-	x[i].getElementsByTagName("Wydano")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-	x[i].getElementsByTagName("Do_zwrotu")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-	x[i].getElementsByTagName("Notatki")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-    x[i].getElementsByTagName("Konserwacja")[0].childNodes[0].nodeValue +
-    "</td></tr>";
-  }
-  document.getElementById("wyniki").innerHTML = table;
-}
-</script>
+		      	<!-- Modal Header -->
+		      	<div class="modal-header">
+			        <h4 class="modal-title">Edit Employee</h4>
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      	</div>
 
+		      	<!-- Modal body -->
+		      	<div class="modal-body">
+		        	<form action="update.php" id="edit-form">
+		        		<input class="form-control" type="hidden" name="id">
+				    	<div class="form-group">
+						    <label for="email">Email</label>
+						    <input class="form-control" type="text" name="email">
+					  	</div>
+					  	<div class="form-group">
+						    <label for="first_name">First Name</label>
+						    <input class="form-control" type="text" name="first_name">
+					  	</div>
+					  	<div class="form-group">
+						    <label for="last_name">Last Name</label>
+						    <input class="form-control" type="text" name="last_name">
+					  	</div>
+					  	<div class="form-group">
+						    <label for="address">Address</label>
+						    <textarea class="form-control" type="text" name="address" rows="3"></textarea>
+					  	</div>
+					  	<button type="button" class="btn btn-primary" id="btnUpdateSubmit">Update</button>
+					  	<button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+					</form>
+		      	</div>
+		    </div>
+	  	</div>
+	</div>
 </body>
 </html>

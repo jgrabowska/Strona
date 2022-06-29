@@ -1,31 +1,38 @@
 <div class="w3-margin-left w3-row-padding" >
 <h3>Dodaj</h3>
+	<form class="w3-margin-left w3-row-padding" action="save.php" id="form">
+		<div class="form-group">
+			<label for="ST">ŚT</label>
+			<input class="form-control" type="text" name="ST" style="width:50%">
+		</div>
+		<div class="form-group">
+			<label for="Nazwa">Nazwa</label>
+			<input class="form-control" type="text" name="Nazwa" style="width:50%">
+		</div>
+		<div class="form-group">
+			<label for="Nr_seryjny">Nr seryjny</label>
+			<input class="form-control" type="text" name="Nr_seryjny" style="width:50%">
+		</div>
+		<div class="form-group">
+			<label for="Osoba_poz">Osoba pożyczająca</label>
+			<textarea class="form-control" type="text" name="Osoba_poz" style="width:50%"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="Wydano">Wydano</label>
+			<textarea class="form-control" type="text" name="Wydano" style="width:50%"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="Do_zwrotu">Do zwrotu</label>
+			<textarea class="form-control" type="text" name="Do_zwrotu" style="width:50%"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="Notatki">Notatki</label>
+			<textarea class="form-control" type="text" name="Notatki" style="width:50%"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="Konserwacja">Konserwacja</label>
+			<textarea class="form-control" type="text" name="Konserwacja" style="width:50%"></textarea>
+		</div>
+		<button type="button" class="w3-button w3-white w3-border" id="btnSubmit">Dodaj</button>
+	</form>
 </div>
-<form class="w3-margin-left w3-row-padding" >
-	<p>
-	<label>ŚT</label>
-	<input class="w3-input w3-border" name="ST" type="text" style="width:20%"></p>
-	<p>
-	<label>Nazwa</label>
-	<input class="w3-input w3-border" name="Nazwa" type="text" style="width:20%"></p>
-	<p>
-	<label>Nr seryjny</label>
-	<input class="w3-input w3-border" name="Nr_seryjny" type="text" style="width:20%"></p>
-	<p>
-	<label>Osoba pożyczająca</label>
-	<input class="w3-input w3-border" name="Osoba_poz" type="text" style="width:20%"></p>
-	<p>
-	<label>Wydano</label>
-	<input class="w3-input w3-border" name="Wydano" type="text" style="width:20%"></p>
-	<p>
-	<label>Do zwrotu</label>
-	<input class="w3-input w3-border" name="Do_zwrotu" type="text" style="width:20%"></p>
-	<p>
-	<label>Konserwacja</label>
-	<input class="w3-input w3-border" name="Konserwacja" type="text" style="width:20%"></p>
-	
-	<button class="w3-button w3-white w3-border" onclick="loadDoc()">Szukaj</button>
-</div>
-
-<div id="wyniki"></div>
-
