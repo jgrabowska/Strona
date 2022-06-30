@@ -33,22 +33,33 @@ function all()
     });
 }
 
-function loadPage(brl) {
-	var url = eval("brl");
-	$( "#wyniki" ).load(url, function(){ 
-	});
+function showST(str) {
+  if (str == "") {
+    document.getElementById("wyszuk").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("wyszuk").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET","getst.php?q="+str,true);
+    xmlhttp.send();
+  }
 }
 
 function save() 
 {
 	$("#btnSubmit").on("click", function() {
+		
 		var $this 		    = $(this); //submit button selector using ID
         var $caption        = $this.html();// We store the html content of the submit button
         var form 			= "#form"; //defined the #form ID
         var formData        = $(form).serializeArray(); //serialize the form into array
         var route 			= $(form).attr('action'); //get the route using attribute action
-
-        // Ajax config
+        
+		// Ajax config
     	$.ajax({
 	        type: "POST", //we are using POST method to submit the data to the server side
 	        url: route, // get the route value
@@ -130,9 +141,6 @@ function update()
 	        },
 	        success: function (response) {//once the request successfully process to the server side it will return result here
 	            $this.attr('disabled', false).html($caption);
-
-	            // Reload lists of employees
-	            all();
 
 	            // We will display the result using alert
 	            alert(response);

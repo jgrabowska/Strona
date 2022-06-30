@@ -1,6 +1,6 @@
 <div class="w3-margin-left w3-row-padding" >
 <h3>Dodaj</h3>
-	<form class="w3-margin-left w3-row-padding" action="../save.php" id="form">
+	<form class="w3-margin-left w3-row-padding" action="save.php" id="form">
 		<div class="form-group">
 			<label for="ST">ŚT</label>
 			<input class="form-control" type="text" name="ST" style="width:50%">
@@ -36,4 +36,3 @@
 		<button type="button" class="w3-button w3-white w3-border" id="btnSubmit">Dodaj</button>
 	</form>
 </div>
-
