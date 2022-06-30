@@ -25,7 +25,7 @@
 	$sql = "UPDATE stn SET ST='".$ST."', Nazwa='".$Nazwa."', Nr_seryjny='".$Nr_seryjny."', Osoba_poz='".$Osoba_poz."',Wydano='".$Wydano."',Do_zwrotu='".$Do_zwrotu."',Notatki='".$Notatki."',Konserwacja='".$Konserwacja."' WHERE id='".$id."'";
 
 	if ($mysqli->query($sql)) {
-	  echo "Rekord został zaktualizowany id:" .$id;
+	  echo "Rekord został zaktualizowany";
 	} else {
 	  echo "Błąd: " . $sql . "<br>" . $mysqli->error;
 	}

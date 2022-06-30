@@ -18,7 +18,7 @@
 		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('H')"><i class="fa fa-home"></i> Na magazynie</button>
 		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('Dodaj')"><i class="fa fa-plus"></i> Dodaj</button>
 		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('Wyszukaj')"><i class="fa fa-search"></i> Wyszukaj</button>
-		  <div class="w3-right w3-bar-item"><i class="fa-solid fa-folder-tree"></i> Ewidencja środków trwałych</div>
+		  <div class="w3-right w3-bar-item"><i class="fa fa-folder-tree"></i> Ewidencja środków trwałych</div>
 		</div>
 		
 		<!-- Główna -->

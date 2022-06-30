@@ -1,5 +1,4 @@
 
-
 function all() 
 {
 	$.ajax({
@@ -45,6 +44,7 @@ function showST(str) {
     xmlhttp.open("GET","getst.php?q="+str,true);
     xmlhttp.send();
   }
+  
 }
 
 function save() 
@@ -90,12 +90,12 @@ function get()
 {
 	$(document).delegate("[data-target='#edit-employee-modal']", "click", function() {
 
-		var id = $(this).attr('data-id');
+		var idst = $(this).attr('data-id');
 
 		$.ajax({
 	        type: "GET",
 	        url: 'get.php', 
-	        data: {id:id}, 
+	        data: {id:idst}, 
 	        beforeSend: function () {
 	            
 	        },
@@ -139,7 +139,9 @@ function update()
 	            alert(response);
 
 	            resetForm(form);
-
+				
+				
+				
 	            $('#edit-employee-modal').modal('toggle');
 	        },
 	        error: function (XMLHttpRequest, textStatus, errorThrown) {

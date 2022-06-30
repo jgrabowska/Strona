@@ -1,5 +1,4 @@
 
-
 function all() 
 {
 	$.ajax({
@@ -45,6 +44,7 @@ function showST(str) {
     xmlhttp.open("GET","getst.php?q="+str,true);
     xmlhttp.send();
   }
+  
 }
 
 function save() 
@@ -136,10 +136,13 @@ function update()
 				
 				all();
 				
+				showST(str);
+				
 	            alert(response);
 
 	            resetForm(form);
-
+				
+				
 	            $('#edit-employee-modal').modal('toggle');
 	        },
 	        error: function (XMLHttpRequest, textStatus, errorThrown) {
