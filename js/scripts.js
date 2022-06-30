@@ -2,32 +2,30 @@
 
 function all() 
 {
-	// Ajax config
 	$.ajax({
-        type: "GET", //we are using GET method to get all record from the server
-        url: 'all.php', // get the route value
-        success: function (response) {//once the request successfully process to the server side it will return result here
+        type: "GET", 
+        url: 'all.php',
+        success: function (response) {
             
-            // Parse the json result
         	response = JSON.parse(response);
 
             var html = "";
-            // Check if there is available records
+
             if(response.length) {
             	html += "<table class='w3-table-all'><tr><th>ŚT</th><th>Nazwa</th><th>Nr seryjny</th><th>Osoba pożyczająca</th><th>Wydano</th><th>Do zwrotu</th><th>Notatki</th><th>Konserwacja</th></tr>";
-	            // Loop the parsed JSON
+
 	            $.each(response, function(key,value) {
-	            	// Our employee list template
 					html += "<tr><td>" + value.ST + "</td>" + "<td>" + value.Nazwa + "</td>" + "<td>" + value.Nr_seryjny + "</td>" + "<td>" + value.Osoba_poz + "</td>" + "<td>" + value.Wydano + "</td>" + "<td>" + value.Do_zwrotu + "</td>" + "<td>" + value.Notatki + "</td>" + "<td>" + value.Konserwacja + "</td>"+"<td> <button class='w3-button w3-border' data-toggle='modal' data-target='#edit-employee-modal' data-id='"+value.id+"'>Edytuj</button> <button class='w3-button w3-border btn-delete-employee' data-id='"+value.id+"' typle='button'>Usuń</button></td></tr>" ;
 	            });
+				
 	           html += "</table>";
+			   
             } else {
             	html += '<div class="alert alert-warning">';
 				html += 'Nic nie znaleziono';
 				html += '</div>';
             }
-
-            // Insert the HTML Template and display all employee records
+			
 			$("#wyniki").html(html);
         }
     });
@@ -53,34 +51,30 @@ function save()
 {
 	$("#btnSubmit").on("click", function() {
 		
-		var $this 		    = $(this); //submit button selector using ID
-        var $caption        = $this.html();// We store the html content of the submit button
-        var form 			= "#form"; //defined the #form ID
-        var formData        = $(form).serializeArray(); //serialize the form into array
-        var route 			= $(form).attr('action'); //get the route using attribute action
+		var $this 		    = $(this); 
+        var $caption        = $this.html();
+        var form 			= "#form"; 
+        var formData        = $(form).serializeArray();
+        var route 			= $(form).attr('action');
         
-		// Ajax config
     	$.ajax({
-	        type: "POST", //we are using POST method to submit the data to the server side
-	        url: route, // get the route value
-	        data: formData, // our serialized array data for server side
-	        beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
+	        type: "POST",
+	        url: route,
+	        data: formData,
+	        beforeSend: function () {
 	            $this.attr('disabled', true).html("Dodawanie...");
 	        },
-	        success: function (response) {//once the request successfully process to the server side it will return result here
+	        success: function (response) {
 	            $this.attr('disabled', false).html($caption);
 
-	            // Reload lists of employees
 	            all();
 
-	            // We will display the result using alert
 	            alert(response);
 
-	            // Reset form
 	            resetForm(form);
 	        },
 	        error: function (XMLHttpRequest, textStatus, errorThrown) {
-	        	// You can put something here if there is an error from submitted request
+
 	        }
 	    });
 	});
@@ -96,17 +90,16 @@ function get()
 {
 	$(document).delegate("[data-target='#edit-employee-modal']", "click", function() {
 
-		var id = $(this).attr('data-id');
+		var idst = $(this).attr('data-id');
 
-		// Ajax config
 		$.ajax({
-	        type: "GET", //we are using GET method to get data from server side
-	        url: 'get.php', // get the route value
-	        data: {idst:id}, //set data
-	        beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
+	        type: "GET",
+	        url: 'get.php', 
+	        data: {id:idst}, 
+	        beforeSend: function () {
 	            
 	        },
-	        success: function (response) {//once the request successfully process to the server side it will return result here
+	        success: function (response) {
 	            response = JSON.parse(response);
 	            $("#edit-form [name=\"id\"]").val(response.id);
 	            $("#edit-form [name=\"ST\"]").val(response.ST);
@@ -125,34 +118,31 @@ function get()
 function update() 
 {
 	$("#btnUpdateSubmit").on("click", function() {
-		var $this 		    = $(this); //submit button selector using ID
-        var $caption        = $this.html();// We store the html content of the submit button
-        var form 			= "#edit-form"; //defined the #form ID
-        var formData        = $(form).serializeArray(); //serialize the form into array
-        var route 			= $(form).attr('action'); //get the route using attribute action
+		var $this 		    = $(this);
+        var $caption        = $this.html();
+        var form 			= "#edit-form"; 
+        var formData        = $(form).serializeArray();
+        var route 			= $(form).attr('action'); 
 
-        // Ajax config
     	$.ajax({
-	        type: "POST", //we are using POST method to submit the data to the server side
-	        url: route, // get the route value
-	        data: formData, // our serialized array data for server side
-	        beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
-	            $this.attr('disabled', true).html("Processing...");
+	        type: "POST", 
+	        url: route, 
+	        data: formData,
+	        beforeSend: function () {
+	            $this.attr('disabled', true).html("Aktualizowanie...");
 	        },
-	        success: function (response) {//once the request successfully process to the server side it will return result here
+	        success: function (response) {
 	            $this.attr('disabled', false).html($caption);
-
-	            // We will display the result using alert
+				
+				all();
+				
 	            alert(response);
 
-	            // Reset form
 	            resetForm(form);
 
-	            // Close modal
 	            $('#edit-employee-modal').modal('toggle');
 	        },
 	        error: function (XMLHttpRequest, textStatus, errorThrown) {
-	        	// You can put something here if there is an error from submitted request
 	        }
 	    });
 	});
@@ -163,21 +153,17 @@ function del()
 {
 	$(document).delegate(".btn-delete-employee", "click", function() {
 
-		
+		if (confirm("Czy na pewno usunąć?")) {
+		    var idst = $(this).attr('data-id');
 
-		if (confirm("Are you sure you want to delete this record?")) {
-		    var id = $(this).attr('data-id');
-
-		    // Ajax config
 			$.ajax({
-		        type: "GET", //we are using GET method to get data from server side
-		        url: 'delete.php', // get the route value
-		        data: {idst:id}, //set data
-		        beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
+		        type: "GET",
+		        url: 'delete.php', 
+		        data: {id:idst}, 
+		        beforeSend: function () {
 		            
 		        },
-		        success: function (response) {//once the request successfully process to the server side it will return result here
-		            // Reload lists of employees
+		        success: function (response) {
 	            	all();
 
 		            alert(response)
@@ -192,19 +178,14 @@ function del()
 
 $(document).ready(function() {
 
-	// Get all employee records
 	all();
 
-	// Submit form using AJAX To Save Data
 	save();
 
-	// Get the data and view to modal
 	get();
 	 
-	// Updating the data
 	update();
 
-	// Delete record via ajax
 	del();
 });
 

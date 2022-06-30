@@ -1,6 +1,6 @@
 <?php
 	$request = $_REQUEST;
-	$id = $request['idst'];
+	$id = $request['id'];
 	$ST = $request['ST'];
 	$Nazwa = $request['Nazwa'];
 	$Nr_seryjny = $request['Nr_seryjny'];

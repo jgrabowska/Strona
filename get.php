@@ -1,6 +1,6 @@
 <?php
 	$request = $_REQUEST; 
-	$id = $request['idst'];
+	$id = $request['id'];
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
