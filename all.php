@@ -11,8 +11,7 @@
 	  exit();
 	}
 
-	//$sql = "SELECT * FROM stn";
-	$sql = "SELECT * FROM stn WHERE Osoba_poz='' ORDER BY id DESC LIMIT 5";
+	$sql = "SELECT * FROM stn WHERE Osoba_poz=''";
 	$results = $mysqli->query($sql);
 
 	$row = $results->fetch_all(MYSQLI_ASSOC);
