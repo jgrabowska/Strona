@@ -14,7 +14,7 @@ function all()
             	html += "<table class='w3-table-all'><tr><th>ŚT</th><th>Nazwa</th><th>Nr seryjny</th><th>Osoba pożyczająca</th><th>Wydano</th><th>Do zwrotu</th><th>Notatki</th><th>Konserwacja</th></tr>";
 
 	            $.each(response, function(key,value) {
-					html += "<tr><td>" + value.ST + "</td>" + "<td>" + value.Nazwa + "</td>" + "<td>" + value.Nr_seryjny + "</td>" + "<td>" + value.Osoba_poz + "</td>" + "<td>" + value.Wydano + "</td>" + "<td>" + value.Do_zwrotu + "</td>" + "<td>" + value.Notatki + "</td>" + "<td>" + value.Konserwacja + "</td>"+"<td> <button class='w3-button w3-border' data-toggle='modal' data-target='#edit-employee-modal' data-id='"+value.id+"'>Edytuj</button> <button class='w3-button w3-border btn-delete-employee' data-id='"+value.id+"' typle='button'>Usuń</button></td></tr>" ;
+					html += "<tr><td>" + value.ST + "</td>" + "<td>" + value.Nazwa + "</td>" + "<td>" + value.Nr_seryjny + "</td>" + "<td>" + value.Osoba_poz + "</td>" + "<td>" + value.Wydano + "</td>" + "<td>" + value.Do_zwrotu + "</td>" + "<td>" + value.Notatki + "</td>" + "<td>" + value.Konserwacja + "</td>"+"<td> <button class='w3-button w3-border' data-toggle='modal' data-target='#edit-st-modal' data-id='"+value.id+"'>Edytuj</button> <button class='w3-button w3-border btn-delete-st' data-id='"+value.id+"' typle='button'>Usuń</button></td></tr>" ;
 	            });
 				
 	           html += "</table>";
@@ -38,8 +38,7 @@ function search()
         var form 			= "#form-search"; 
         var formData        = $(form).serializeArray();
         var route 			= $(form).attr('action');
-        console.log("teest");
-		$("#wysz").html("O CO CHODZI");
+
     	$.ajax({
 	        type: "POST",
 	        url: route,
@@ -58,7 +57,7 @@ function search()
 					html += "<table class='w3-table-all'><tr><th>ŚT</th><th>Nazwa</th><th>Nr seryjny</th><th>Osoba pożyczająca</th><th>Wydano</th><th>Do zwrotu</th><th>Notatki</th><th>Konserwacja</th></tr>";
 
 					$.each(response, function(key,value) {
-						html += "<tr><td>" + value.ST + "</td>" + "<td>" + value.Nazwa + "</td>" + "<td>" + value.Nr_seryjny + "</td>" + "<td>" + value.Osoba_poz + "</td>" + "<td>" + value.Wydano + "</td>" + "<td>" + value.Do_zwrotu + "</td>" + "<td>" + value.Notatki + "</td>" + "<td>" + value.Konserwacja + "</td>"+"<td> <button class='w3-button w3-border' data-toggle='modal' data-target='#edit-employee-modal' data-id='"+value.id+"'>Edytuj</button> <button class='w3-button w3-border btn-delete-employee' data-id='"+value.id+"' typle='button'>Usuń</button></td></tr>" ;
+						html += "<tr><td>" + value.ST + "</td>" + "<td>" + value.Nazwa + "</td>" + "<td>" + value.Nr_seryjny + "</td>" + "<td>" + value.Osoba_poz + "</td>" + "<td>" + value.Wydano + "</td>" + "<td>" + value.Do_zwrotu + "</td>" + "<td>" + value.Notatki + "</td>" + "<td>" + value.Konserwacja + "</td>"+"<td> <button class='w3-button w3-border' data-toggle='modal' data-target='#edit-st-modal' data-id='"+value.id+"'>Edytuj</button> <button class='w3-button w3-border btn-delete-st' data-id='"+value.id+"' typle='button'>Usuń</button></td></tr>" ;
 					});
 					
 				   html += "</table>";
@@ -75,23 +74,6 @@ function search()
 	        }
 	    });
 	});
-}
-
-function showST(str) {
-  if (str == "") {
-    document.getElementById("wyszuk").innerHTML = "";
-    return;
-  } else {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("wyszuk").innerHTML = this.responseText;
-      }
-    };
-    xmlhttp.open("GET","getst.php?q="+str,true);
-    xmlhttp.send();
-  }
-  
 }
 
 function save() 
@@ -135,7 +117,7 @@ function resetForm(selector)
 
 function get() 
 {
-	$(document).delegate("[data-target='#edit-employee-modal']", "click", function() {
+	$(document).delegate("[data-target='#edit-st-modal']", "click", function() {
 
 		var idst = $(this).attr('data-id');
 
@@ -188,7 +170,7 @@ function update()
 	            resetForm(form);
 				
 				
-	            $('#edit-employee-modal').modal('toggle');
+	            $('#edit-st-modal').modal('toggle');
 	        },
 	        error: function (XMLHttpRequest, textStatus, errorThrown) {
 	        }
@@ -199,7 +181,7 @@ function update()
 
 function del() 
 {
-	$(document).delegate(".btn-delete-employee", "click", function() {
+	$(document).delegate(".btn-delete-st", "click", function() {
 
 		if (confirm("Czy na pewno usunąć?")) {
 		    var idst = $(this).attr('data-id');

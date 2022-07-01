@@ -15,7 +15,7 @@
 
 		<!-- Pasek -->
 		<div class="w3-bar w3-black">
-		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('H')"><i class="fa fa-home"></i> Na magazynie</button>
+		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('H')"><i class="fa fa-home"></i> W magazynie</button>
 		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('Dodaj')"><i class="fa fa-plus"></i> Dodaj</button>
 		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('Wyszukaj')"><i class="fa fa-search"></i> Wyszukaj</button>
 		  <div class="w3-right w3-bar-item">Ewidencja środków trwałych</div>
@@ -23,13 +23,17 @@
 		
 		<!-- Główna -->
 		<div id="H" class="opage">
-			<div id="wyniki"></div>
+			<div class="w3-margin-left w3-row-padding">
+					<br>
+					<h4><i class="fa fa-home"></i> ŚT w magazynie</h4>
+				<div id="wyniki"></div>
+			</div>
 		</div>
 		
 		<!-- Dodaj -->
 		<div id="Dodaj" class="opage">
 			<div class="w3-margin-left w3-row-padding">
-				<h3>Dodaj</h3>
+				<h3><i class="fa fa-plus"></i> Dodaj</h3>
 				<form class="w3-margin-left w3-row-padding" action="save.php" id="form">
 					<div class="form-group">
 						<label for="ST">ŚT</label>
@@ -49,11 +53,11 @@
 					</div>
 					<div class="form-group">
 						<label for="Wydano">Wydano</label>
-						<input class="form-control" type="text" name="Wydano" style="width:50%"></input>
+						<input class="form-control" type="text" name="Wydano" style="width:50%"  placeholder="YYYY-MM-DD"></input>
 					</div>
 					<div class="form-group">
 						<label for="Do_zwrotu">Do zwrotu</label>
-						<input class="form-control" type="text" name="Do_zwrotu" style="width:50%"></input>
+						<input class="form-control" type="text" name="Do_zwrotu" style="width:50%" placeholder="YYYY-MM-DD"></input>
 					</div>
 					<div class="form-group">
 						<label for="Notatki">Notatki</label>
@@ -61,7 +65,7 @@
 					</div>
 					<div class="form-group">
 						<label for="Konserwacja">Konserwacja</label>
-						<input class="form-control" type="text" name="Konserwacja" style="width:50%"></input>
+						<input class="form-control" type="text" name="Konserwacja" style="width:50%" placeholder="YYYY-MM-DD"></input>
 					</div>
 					<button type="button" class="w3-button w3-white w3-border" id="btnSubmit">Dodaj</button>
 				</form>
@@ -70,12 +74,12 @@
 
 		<!-- Wyszukaj -->
 		<div id="Wyszukaj" class="opage w3-margin-left w3-margin-right">
-		  <h3>Wyszukaj</h3>
-			<form class="w3-margin-left w3-row-padding" id="form-search" action="all_test.php">
+		  <h3><i class="fa fa-search"></i> Wyszukaj</h3>
+			<form class="w3-margin-left w3-row-padding" id="form-search" action="search.php">
 				<div class="formS-group">
 					
 					<input class="formS-control" type="text" name="Szukaj" style="width:10%"></input>
-					<button  type="submit" class="w3-button w3-white w3-border w3-small" id="btnSearch"><i class="fa fa-search"></i></button>
+					<button  type="submit" class="w3-button w3-white w3-border w3-small" id="btnSearch">Szukaj</button>
 				</div>
 			</form>
 			<br>
@@ -84,7 +88,7 @@
 		
 		<!-- Edycja -->
 		<!-- The Modal -->
-		<div class="modal" id="edit-employee-modal">
+		<div class="modal" id="edit-st-modal">
 			<div class="modal-dialog">
 				<div class="modal-content">
 
@@ -116,11 +120,11 @@
 							</div>
 							<div class="form-group">
 								<label for="Wydano">Wydano</label>
-								<input class="form-control" type="text" name="Wydano"></input>
+								<input class="form-control" type="text" name="Wydano" placeholder="YYYY-MM-DD"></input>
 							</div>
 							<div class="form-group">
 								<label for="Do_zwrotu">Do zwrotu</label>
-								<input class="form-control" type="text" name="Do_zwrotu"></input>
+								<input class="form-control" type="text" name="Do_zwrotu" placeholder="YYYY-MM-DD"></input>
 							</div>
 							<div class="form-group">
 								<label for="Notatki">Notatki</label>
@@ -128,7 +132,7 @@
 							</div>
 							<div class="form-group">
 								<label for="Konserwacja">Konserwacja</label>
-								<input class="form-control" type="text" name="Konserwacja"></input>
+								<input class="form-control" type="text" name="Konserwacja" placeholder="YYYY-MM-DD"></input>
 							</div>					
 							<button type="button" class="w3-button w3-white w3-border" id="btnUpdateSubmit">Aktualizuj</button>
 							<button type="button" class="w3-button w3-white w3-border" data-dismiss="modal">Zamknij</button>
@@ -137,12 +141,9 @@
 				</div>
 			</div>
 		</div>
-		<script>
-
-		</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script src="js/scripts.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
 	</body>
 </html>
