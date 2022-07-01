@@ -18,7 +18,7 @@
 		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('H')"><i class="fa fa-home"></i> Na magazynie</button>
 		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('Dodaj')"><i class="fa fa-plus"></i> Dodaj</button>
 		  <button class="w3-button w3-black w3-bar-item" onclick="openPage('Wyszukaj')"><i class="fa fa-search"></i> Wyszukaj</button>
-		  <div class="w3-right w3-bar-item"><i class="fa fa-folder-tree"></i> Ewidencja środków trwałych</div>
+		  <div class="w3-right w3-bar-item">Ewidencja środków trwałych</div>
 		</div>
 		
 		<!-- Główna -->
@@ -45,15 +45,15 @@
 					</div>
 					<div class="form-group">
 						<label for="Osoba_poz">Osoba pożyczająca</label>
-						<textarea class="form-control" type="text" name="Osoba_poz" style="width:50%"></textarea>
+						<input class="form-control" type="text" name="Osoba_poz" style="width:50%"></input>
 					</div>
 					<div class="form-group">
 						<label for="Wydano">Wydano</label>
-						<textarea class="form-control" type="text" name="Wydano" style="width:50%"></textarea>
+						<input class="form-control" type="text" name="Wydano" style="width:50%"></input>
 					</div>
 					<div class="form-group">
 						<label for="Do_zwrotu">Do zwrotu</label>
-						<textarea class="form-control" type="text" name="Do_zwrotu" style="width:50%"></textarea>
+						<input class="form-control" type="text" name="Do_zwrotu" style="width:50%"></input>
 					</div>
 					<div class="form-group">
 						<label for="Notatki">Notatki</label>
@@ -61,7 +61,7 @@
 					</div>
 					<div class="form-group">
 						<label for="Konserwacja">Konserwacja</label>
-						<textarea class="form-control" type="text" name="Konserwacja" style="width:50%"></textarea>
+						<input class="form-control" type="text" name="Konserwacja" style="width:50%"></input>
 					</div>
 					<button type="button" class="w3-button w3-white w3-border" id="btnSubmit">Dodaj</button>
 				</form>
@@ -71,9 +71,15 @@
 		<!-- Wyszukaj -->
 		<div id="Wyszukaj" class="opage w3-margin-left w3-margin-right">
 		  <h3>Wyszukaj</h3>
-			<input onkeyup="showST(this.value)" class="w3-input w3-border search" id="ST" type="text" style="width:20%">
+			<form class="w3-margin-left w3-row-padding" id="form-search" action="all_test.php">
+				<div class="formS-group">
+					
+					<input class="formS-control" type="text" name="Szukaj" style="width:10%"></input>
+					<button  type="submit" class="w3-button w3-white w3-border w3-small" id="btnSearch"><i class="fa fa-search"></i></button>
+				</div>
+			</form>
 			<br>
-			<div id="wyszuk"></div>
+			<div id="wysz"></div>
 		</div>
 		
 		<!-- Edycja -->
@@ -106,15 +112,15 @@
 							</div>
 							<div class="form-group">
 								<label for="Osoba_poz">Osoba pożyczająca</label>
-								<textarea class="form-control" type="text" name="Osoba_poz"></textarea>
+								<input class="form-control" type="text" name="Osoba_poz"></input>
 							</div>
 							<div class="form-group">
 								<label for="Wydano">Wydano</label>
-								<textarea class="form-control" type="text" name="Wydano"></textarea>
+								<input class="form-control" type="text" name="Wydano"></input>
 							</div>
 							<div class="form-group">
 								<label for="Do_zwrotu">Do zwrotu</label>
-								<textarea class="form-control" type="text" name="Do_zwrotu"></textarea>
+								<input class="form-control" type="text" name="Do_zwrotu"></input>
 							</div>
 							<div class="form-group">
 								<label for="Notatki">Notatki</label>
@@ -122,25 +128,17 @@
 							</div>
 							<div class="form-group">
 								<label for="Konserwacja">Konserwacja</label>
-								<textarea class="form-control" type="text" name="Konserwacja"></textarea>
+								<input class="form-control" type="text" name="Konserwacja"></input>
 							</div>					
-							<button type="button" class="btn btn-primary" id="btnUpdateSubmit">Aktualizuj</button>
-							<button type="button" class="btn btn-danger float-right" data-dismiss="modal">Zamknij</button>
+							<button type="button" class="w3-button w3-white w3-border" id="btnUpdateSubmit">Aktualizuj</button>
+							<button type="button" class="w3-button w3-white w3-border" data-dismiss="modal">Zamknij</button>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script>
-			openPage("H")
-			function openPage(name) {
-				var i;
-				var x = document.getElementsByClassName("opage");
-				for (i = 0; i < x.length; i++) {
-				   x[i].style.display = "none";  
-				}
-				document.getElementById(name).style.display = "block";  
-			}
+
 		</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
